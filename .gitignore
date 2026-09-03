@@ -1,0 +1,4 @@
+venv/
+raw_data/
+clean_data/
+database/*.db
