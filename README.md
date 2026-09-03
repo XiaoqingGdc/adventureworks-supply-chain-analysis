@@ -46,7 +46,7 @@ python src/chargement.py
 
 ## 📊 Dataset
 
-[AdventureWorks](https://github.com/microsoft/sql-server-samples) — jeu de données open-source officiel de Microsoft.
+[AdventureWorks](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks) — jeu de données open-source officiel de Microsoft.
 
 ## ✅ Suivi de projet
 
