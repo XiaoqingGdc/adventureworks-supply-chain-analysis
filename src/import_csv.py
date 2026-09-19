@@ -1,13 +1,11 @@
 """
-Import automatique des 15 CSV nettoyés dans adventureworks.db,
+Import automatique des 15 CSV avec les entêtes et séparateurs corrigés  dans adventureworks.db,
 dans l'ordre des dépendances de clés étrangères (même ordre que
 create_database.sql / create_database_fr.sql).
 
 Prérequis : les 15 tables vides (avec contraintes PK/FK) doivent
 déjà exister dans adventureworks.db (via le script SQL).
 
-Usage : placer ce fichier dans src/, puis lancer :
-    python importCsv.py
 """
 
 import sqlite3
