@@ -5,8 +5,6 @@ Note : les tables sont créées dans l'ordre des dépendances
        (une table référencée par une clé étrangère doit être
        créée avant la table qui la référence).
 
-Usage : placer ce fichier dans src/, puis lancer :
-    python createbdd.py
 """
 
 import sqlite3
