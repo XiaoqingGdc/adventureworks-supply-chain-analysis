@@ -8,33 +8,30 @@ Comment la performance des fournisseurs et la rotation des stocks influencent-el
 
 ## 🗂️ Structure du projet
 
+```
 ProjetFinal/
-├── clean_data/ ← les 15 fichiers CSV avec les en-têtes après add_headers.py
-├── database/ ← adventureworks.db (base créée à partir des 15 CSV)
-├── docs/ ← documents (dictionnaire de données, rapports, procédure, stats)
-│ ├── AdventureWorks_Dictionnaire_de_donnees.md
-│ ├── powerbi-rapport.md
-│ ├── Précédure.md
-│ ├── rapport.md
-│ └── stats_valeur_null.md
-├── img/ ← divers fichiers image
-├── parquet_for_powerbi/ ← 15 fichiers parquet pour Power BI, générés par export_clean_parquet.py
-├── raw_data/ ← données brutes CSV (téléchargées telles quelles, sans nom de colonne)
-├── src/ ← scripts Python
-│ ├── add_headers.py ← ajout des en-têtes (raw_data → clean_data)
-│ ├── creat_api.py ← création de l'API
-│ ├── creat_bdd.py ← création de la base de données (module sqlite3)
-│ ├── eda.py ← analyse exploratoire des données
-│ ├── export_clean_parquet.py ← extraction des 15 fichiers au format parquet à partir de database/adventureworks.db pour Power BI
-│ ├── import_csv.py ← chargement des 15 CSV dans la base de données adventureworks.db
-│ ├── supprimer_valeurnull.py ← traitement des valeurs nulles
-│ └── test.py
-├── venv/ ← environnement virtuel Python (ignoré par git)
+├── clean_data/                 
+├── database/                    
+├── docs/                         
+│   ├── AdventureWorks_Dictionnaire_de_donnees.md
+├── img/                           ← divers fichiers image
+├── parquet_for_powerbi/           
+├── raw_data/                      
+├── src/                          
+│   ├── add_headers.py           
+│   ├── creat_api.py              
+│   ├── creat_bdd.py             
+│   ├── eda.py                    
+│   ├── export_clean_parquet.py   
+│   ├── import_csv.py             
+│   ├── supprimer_valeurnull.py   
+│   └── test.py
+├── venv/                          
 ├── .gitignore
 ├── AdventureWorks.pbix
-├── requirements.txt ← dépendances Python (pip freeze)
+├── requirements.txt              
 └── README.md
-
+```
 
 ## 🔄 Étapes du projet
 
