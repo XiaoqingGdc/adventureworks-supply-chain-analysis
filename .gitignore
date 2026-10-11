@@ -1,5 +1,10 @@
 venv/
 __pycache__
-database/*.db
+raw_data/*
+!raw_data/.gitkeep
+clean_data/*
+!clean_data/.gitkeep
+database/*
+!database/.gitkeep
 parquet_for_powerbi/*.parquet
 !parquet_for_powerbi/vendor_segments.parquet
