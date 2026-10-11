@@ -1,5 +1,5 @@
 # 📦 AdventureWorks Supply Chain Analysis
-
+![AdventureWorks](img/logo_adventureworks.png)
 Analyse de l'impact de la performance fournisseurs et de la rotation des stocks sur la marge commerciale, du diagnostic à la restitution.
 ![Dashboard](img/dashboard_vue_ensemble.png)
 
@@ -62,6 +62,16 @@ CSV bruts → Python (pandas) → SQLite → Parquet → Power BI
 8. **`src/export_clean_parquet.py`** : export en Parquet des **13 tables utilisées** par le modèle Power BI (types corrigés : entiers, dates).
 9. **`ml/clustering_fournisseur.ipynb`** : génère `parquet_for_powerbi/vendor_segments.parquet`.
 10. **Power BI** : chargement des fichiers Parquet, modélisation en étoile, mesures DAX, 4 pages de restitution.
+
+### Schéma de la base
+![Schéma AdventureWorks](img/adventureworks.png)
+
+### API FastAPI
+Vérification : le chiffre d'affaires renvoyé par l'API est identique à celui obtenu en SQL.
+
+| Requête API | Requête SQL |
+|---|---|
+| ![API](img/API/API_Get_ca.png) | ![SQL](img/API/SQL_ca.png) |
 
 ## 📊 Dashboard Power BI
 
