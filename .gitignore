@@ -1,1 +1,5 @@
 venv/
+__pycache__
+database/*.db
+parquet_for_powerbi/*.parquet
+!parquet_for_powerbi/vendor_segments.parquet
