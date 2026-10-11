@@ -1,6 +1,7 @@
 # 📦 AdventureWorks Supply Chain Analysis
 
-Projet final (Wild Code School, titre RNCP « Concepteur Développeur en IA et Analyse Big Data ») : analyse de l'impact de la performance fournisseurs et de la rotation des stocks sur la marge commerciale, du diagnostic à la restitution.
+Analyse de l'impact de la performance fournisseurs et de la rotation des stocks sur la marge commerciale, du diagnostic à la restitution.
+![Dashboard](img/dashboard_vue_ensemble.png)
 
 ## 🎯 Problématique
 
@@ -72,6 +73,18 @@ CSV bruts → Python (pandas) → SQLite → Parquet → Power BI
 | **Vente** | D'où vient la marge ? | CA par pays, top produits, canal en ligne vs hors ligne, marge par sous-catégorie |
 
 Modèle : 3 tables de faits (achats, ventes, stock), dimensions produit, fournisseur, client, territoire et calendrier. Comparaisons N-1 à période équivalente (`DATEADD`), les années 2022 et 2025 étant incomplètes.
+
+
+### Achat
+![Achat](img/dashboard_achat.png)
+
+### Produit
+![Produit](img/dashboard_produit.png)
+
+### Vente
+![Vente](img/dashboard_vente.png)
+
+
 
 ## 🤖 Machine learning
 
