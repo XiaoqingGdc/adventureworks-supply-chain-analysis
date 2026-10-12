@@ -20,7 +20,7 @@ Config :
 import os
 from pathlib import Path
 from typing import Optional
-
+from agent import ask
 from fastapi import Body, FastAPI, HTTPException, Query
 import sqlite3
 import uvicorn
@@ -145,7 +145,7 @@ def delete_row(table: str, pk: dict) -> dict:
 @app.get("/")
 def root():
     return {
-        "message": "AdventureWorks API — voir http://127.0.0.1:8000/docs pour la liste complète des endpoints",
+        "message": "AdventureWorks API — voir http://127.0.0.1:4000/docs pour la liste complète des endpoints",
         "db_path": str(DB_PATH),
     }
 
@@ -387,6 +387,10 @@ def get_kpi_produit(annee: Optional[int] = None):
     finally:
         conn.close()
 
+@app.get("/ask", tags=["Agent IA"])
+def ask_agent(question: str):
+    """Pose une question en langage naturel sur la base AdventureWorks."""
+    return {"question": question, "answer": ask(question)}
 
 if __name__ == "__main__":
     uvicorn.run("creat_api:app", host="127.0.0.1", port=4000, reload=True)
