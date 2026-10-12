@@ -1,7 +1,14 @@
 # 📦 AdventureWorks Supply Chain Analysis
-![AdventureWorks](img/logo_adventureworks.png)
-Analyse de l'impact de la performance fournisseurs et de la rotation des stocks sur la marge commerciale, du diagnostic à la restitution.
-![Dashboard](img/dashboard_vue_ensemble.png)
+<table>
+  <tr>
+    <td width="140"><img src="img/logo_adventureworks.png" alt="AdventureWorks" width="120"></td>
+    <td>Analyse de l'impact de la performance fournisseurs et de la rotation des stocks sur la marge commerciale, du diagnostic à la restitution.</td>
+  </tr>
+</table>
+
+[![Power BI](https://img.shields.io/badge/Power_BI-Voir_le_rapport_en_ligne-F2C811?logo=powerbi&logoColor=black)](https://app.powerbi.com/view?r=eyJrIjoiMDZlNzNhMDMtYmE1NC00NDc3LTgzODktZjYxNDJkMTkwMjMzIiwidCI6IjQ3YTE4ODE2LTIwNDMtNGNkMC04YmY0LWUwYzk0MmQ4YzJkNiIsImMiOjN9)
+
+[![Dashboard](img/dashboard_vue_ensemble.png)](https://app.powerbi.com/view?r=eyJrIjoiMDZlNzNhMDMtYmE1NC00NDc3LTgzODktZjYxNDJkMTkwMjMzIiwidCI6IjQ3YTE4ODE2LTIwNDMtNGNkMC04YmY0LWUwYzk0MmQ4YzJkNiIsImMiOjN9)
 
 ## 🎯 Problématique
 
@@ -37,7 +44,7 @@ ProjetFinal/
 │   ├── clustering_fournisseur.ipynb   ← segmentation des fournisseurs
 │   ├── stock_risk_prediction.ipynb    ← classification du risque de rupture
 │   └── outputs/
-├── parquet_for_powerbi/          ← fichiers Parquet chargés dans Power BI(générés par` export_clean_parquet.py`)
+├── parquet_for_powerbi/          ← fichiers Parquet chargés dans Power BI (générés par `export_clean_parquet.py`)
 ├── AdventureWorks.pbix           ← dashboard Power BI
 ├── AdventureWorks_theme.json     ← thème Power BI
 ├── requirements.txt
@@ -52,7 +59,7 @@ CSV bruts → Python (pandas) → SQLite → Parquet → Power BI
                                   ↘ Machine learning (scikit-learn)
 ```
 
-1. **Récupération** des CSV AdventureWorks et stocker les dans `raw_data/`.
+1. **Récupération** des CSV AdventureWorks et stockage dans `raw_data/`.
 2. **`src/add_headers.py`** : ajoute les en-têtes officiels et écrit les CSV dans `clean_data/`.
 3. **`src/creat_bdd.py`** : crée la base SQLite `database/adventureworks.db` en respectant l'ordre des clés étrangères.
 4. **`src/import_csv.py`** : importe les 15 CSV de `clean_data/` dans la base (valeurs nulles marquées `null`).
@@ -74,6 +81,8 @@ Vérification : le chiffre d'affaires renvoyé par l'API est identique à celui 
 | ![API](img/API/API_Get_ca.png) | ![SQL](img/API/SQL_ca.png) |
 
 ## 📊 Dashboard Power BI
+
+🔗 **[Voir le rapport interactif en ligne](https://app.powerbi.com/view?r=eyJrIjoiMDZlNzNhMDMtYmE1NC00NDc3LTgzODktZjYxNDJkMTkwMjMzIiwidCI6IjQ3YTE4ODE2LTIwNDMtNGNkMC04YmY0LWUwYzk0MmQ4YzJkNiIsImMiOjN9)** (aucun compte requis) · ou télécharger [`AdventureWorks.pbix`](AdventureWorks.pbix)
 
 | Page | Question | Contenu principal |
 |---|---|---|
@@ -138,6 +147,6 @@ Puis exécuter `ml/clustering_fournisseur.ipynb` (génère `vendor_segments.parq
 
 Tableau Trello : [adventureworks-supply-chain-analysis](https://trello.com/b/udYAed3U/adventureworks-supply-chain-analysis)
 
-## 👤 Autrice
+## Autrice
 
-Xiaoqing ZHOU GRANDCOING — [Portfolio](https://xiaoqinggdc.github.io/) · [GitHub](https://github.com/XiaoqingGdc)
+Xiaoqing ZHOU GRANDCOING — [Portfolio](https://xiaoqinggdc.github.io/) · [GitHub](https://github.com/XiaoqingGdc) · [LinkedIn](https://www.linkedin.com/in/xiaoqingzhougrandcoing)
