@@ -84,7 +84,7 @@ Vérification : le chiffre d'affaires renvoyé par l'API est identique à celui 
 
 ## 📊 Dashboard Power BI
 
-🔗 **[Voir le rapport interactif en ligne](https://app.powerbi.com/view?r=eyJrIjoiMDZlNzNhMDMtYmE1NC00NDc3LTgzODktZjYxNDJkMTkwMjMzIiwidCI6IjQ3YTE4ODE2LTIwNDMtNGNkMC04YmY0LWUwYzk0MmQ4YzJkNiIsImMiOjN9)** (aucun compte requis) · ou télécharger [`AdventureWorks.pbix`](AdventureWorks.pbix)
+🔗 **[Voir le rapport interactif en ligne](https://app.powerbi.com/view?r=eyJrIjoiYjBlYTViNGYtZDRlMi00ODhkLWIyNDctNjJmMzExZTgxMjcxIiwidCI6IjQ3YTE4ODE2LTIwNDMtNGNkMC04YmY0LWUwYzk0MmQ4YzJkNiIsImMiOjN9)** (aucun compte requis) · ou télécharger [`AdventureWorks.pbix`](AdventureWorks.pbix)
 
 | Page | Question | Contenu principal |
 |---|---|---|
