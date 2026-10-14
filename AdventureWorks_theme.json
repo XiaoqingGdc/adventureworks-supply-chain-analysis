@@ -1,0 +1,37 @@
+{
+  "name": "AdventureWorks Vert",
+  "dataColors": ["#2F5D6E", "#7DBE9A", "#1E7F6B", "#A9C8D2", "#C9A227", "#5C6B73", "#B5D9C4", "#3E8E9E"],
+  "foreground": "#1F2A2E",
+  "foregroundNeutralSecondary": "#5C6B73",
+  "foregroundNeutralTertiary": "#8A979E",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F4F6F5",
+  "backgroundNeutral": "#E3E8E6",
+  "tableAccent": "#1E7F6B",
+  "good": "#1E7F6B",
+  "neutral": "#C9A227",
+  "bad": "#C0504D",
+  "maximum": "#1E7F6B",
+  "center": "#F4F6F5",
+  "minimum": "#C0504D",
+  "textClasses": {
+    "title":   { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#1F2A2E" },
+    "header":  { "fontFace": "Segoe UI Semibold", "fontSize": 11, "color": "#1F2A2E" },
+    "label":   { "fontFace": "Segoe UI", "fontSize": 10, "color": "#5C6B73" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#1F2A2E" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E3E8E6" } }, "radius": 20 }],
+        "dropShadow": [{ "show": false }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#F4F6F5" } }, "transparency": 0 }]
+      }
+    }
+  }
+}
