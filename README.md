@@ -30,7 +30,11 @@ ProjetFinal/
 ├── clean_data/                   ← CSV avec en-têtes (généré par `add_headers.py`)
 ├── database/                     ← base SQLite générée (généré par `creat_bdd.py`)
 ├── docs/
-│   └── AdventureWorks_Dictionnaire_de_donnees.md
+│   ├── AdventureWorks_Dictionnaire_de_donnees.md
+│   └── Rapport_Risques_AdventureWorks.md
+├── presentation/                 ← support de soutenance
+│   ├── AdventureWorks_Soutenance.pptx
+│   └── AdventureWorks_Soutenance.pdf
 ├── img/                          ← captures et schémas
 ├── src/
 │   ├── add_headers.py            ← ajout des en-têtes aux CSV bruts
@@ -42,13 +46,15 @@ ProjetFinal/
 │   ├── nettoyage.py              ← traitement des valeurs manquantes
 │   └── export_clean_parquet.py   ← export des tables utiles en Parquet
 ├── ml/
-│   ├── clustering_fournisseur.ipynb   ← segmentation des fournisseurs
+│   ├── clustering_fournisseur.ipynb    ← segmentation des fournisseurs
 │   ├── risque_rupture_couverture.ipynb ← risque de rupture : couverture de stock en jours
-│   └── outputs/
-├── parquet_for_powerbi/          ← fichiers Parquet chargés dans Power BI (générés par `export_clean_parquet.py`)
+│   └── outputs/                        ← graphiques (coude, PCA) et vendor_clusters.csv
+├── parquet_for_powerbi/          ← fichiers Parquet chargés dans Power BI (tables : `export_clean_parquet.py` ; segments et produits à risque : notebooks `ml/`)
 ├── AdventureWorks.pbix           ← dashboard Power BI
 ├── AdventureWorks_theme.json     ← thème Power BI
 ├── requirements.txt
+├── LICENSE
+├── .gitignore
 └── README.md
 ```
 
@@ -67,7 +73,7 @@ CSV bruts → Python (pandas) → SQLite → Parquet → Power BI
 5. **`src/creat_api.py`** : expose la base via une API FastAPI (opérations CRUD).
 6. **`src/eda.ipynb`** et **`src/check_missing.py`** : analyse exploratoire (valeurs manquantes, cohérence des dates, intégrité référentielle : 11 contrôles validés).
 7. **`src/nettoyage.py`** : traitement des valeurs manquantes et suppression des colonnes sans valeur analytique.
-8. **`src/export_clean_parquet.py`** : export en Parquet des **13 tables utilisées** par le modèle Power BI (types corrigés : entiers, dates).
+8. **`src/export_clean_parquet.py`** : export en Parquet des **15 tables utilisées** par le modèle Power BI (types corrigés : entiers, dates).
 9. **`ml/clustering_fournisseur.ipynb`** : génère `parquet_for_powerbi/vendor_segments.parquet`.
 10. **`ml/risque_rupture_couverture.ipynb`** : calcule la couverture de stock en jours (stock ÷ ventes par jour, comparé au délai fournisseur) et génère `parquet_for_powerbi/produits_a_risque.parquet`.
 11. **Power BI** : chargement des fichiers Parquet, modélisation en étoile, mesures DAX, 4 pages de restitution.

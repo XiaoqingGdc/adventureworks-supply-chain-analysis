@@ -1,4 +1,5 @@
 venv/
+.env
 __pycache__
 raw_data/*
 !raw_data/.gitkeep
@@ -7,4 +8,8 @@ clean_data/*
 database/*
 !database/.gitkeep
 parquet_for_powerbi/*.parquet
-!parquet_for_powerbi/vendor_segments.parquet
+!parquet_for_powerbi/vendor_segments.parquetadventureworks.db
+.vscode/
+src/.env
+src/agent.py
+src/chatbot.py

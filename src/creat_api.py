@@ -29,7 +29,21 @@ from fastapi.middleware.cors import CORSMiddleware
 # ========== Config ==========
 
 DB_PATH = Path(os.environ.get("DB_PATH", "database/adventureworks.db"))
-app = FastAPI()
+app = FastAPI(
+    title="AdventureWorks API",
+    description="API CRUD et KPI sur la base AdventureWorks (SQLite) — Projet Final Wild Code School",
+    version="1.0.0",
+    openapi_tags=[
+        {"name": "Système", "description": "État de l'API et de la base"},
+        {"name": "Fournisseurs (CRUD)", "description": "Les 4 opérations CRUD sur la table Vendor"},
+        {"name": "KPI", "description": "Indicateurs vente, achat et produit"},
+        {"name": "Agent IA", "description": "Questions en langage naturel sur la base"},
+    ],
+)
+
+
+
+
 
 # ========== Accès DB ==========
 def get_conn() -> sqlite3.Connection:
@@ -142,7 +156,7 @@ def delete_row(table: str, pk: dict) -> dict:
 
 
 # ========== Routes de base ==========
-@app.get("/")
+@app.get("/",tags=["Système"])
 def root():
     return {
         "message": "AdventureWorks API — voir http://127.0.0.1:4000/docs pour la liste complète des endpoints",
@@ -150,7 +164,7 @@ def root():
     }
 
 
-@app.get("/health")
+@app.get("/health",tags=["Système"])
 def health():
     exists = DB_PATH.exists()
     return {"status": "ok" if exists else "db_missing", "db_path": str(DB_PATH)}
@@ -158,34 +172,34 @@ def health():
 
 # ========== CRUD Vendor (démonstration des 4 opérations) ==========
 
-@app.get("/vendors")
+@app.get("/vendors", tags=["Fournisseurs (CRUD)"])
 def list_vendors(skip: int = 0, limit: int = Query(100, le=500)):
     return fetch_all("Vendor", skip=skip, limit=limit)
 
 
-@app.get("/vendors/{businessentityid}")
+@app.get("/vendors/{businessentityid}", tags=["Fournisseurs (CRUD)"])
 def get_vendor(businessentityid: int):
     return fetch_one("Vendor", {"businessentityid": businessentityid})
 
 
-@app.post("/vendors", status_code=201)
-def create_vendor(payload: dict = Body(..., example={
+@app.post("/vendors", status_code=201, tags=["Fournisseurs (CRUD)"])
+def create_vendor(payload: dict = Body(..., examples=[{
     "businessentityid": 9999,
     "accountnumber": "TESTV01",
     "name": "Fournisseur Test",
     "creditrating": 3,
     "preferredvendorstatus": 1,
     "activeflag": 1,
-})):
+}])):
     return insert_row("Vendor", payload)
 
 
-@app.put("/vendors/{businessentityid}")
-def update_vendor(businessentityid: int, payload: dict = Body(..., example={"creditrating": 2})):
+@app.put("/vendors/{businessentityid}", tags=["Fournisseurs (CRUD)"])
+def update_vendor(businessentityid: int, payload: dict = Body(..., example=[{"creditrating": 2}])):
     return update_row("Vendor", {"businessentityid": businessentityid}, payload)
 
 
-@app.delete("/vendors/{businessentityid}")
+@app.delete("/vendors/{businessentityid}", tags=["Fournisseurs (CRUD)"])
 def delete_vendor(businessentityid: int):
     return delete_row("Vendor", {"businessentityid": businessentityid})
 
@@ -196,7 +210,7 @@ def delete_vendor(businessentityid: int):
 # fournisseur sur la rotation des stocks / le profit). À affiner/étendre
 # selon les métriques exactes utilisées dans l'analyse.
 
-@app.get("/kpi/vente")
+@app.get("/kpi/vente", tags=["KPI"])
 def get_kpi_vente(annee: Optional[int] = None):
     """
     KPI ventes : chiffre d'affaires, nombre de commandes client, nombre de
@@ -277,7 +291,7 @@ def get_kpi_vente(annee: Optional[int] = None):
         conn.close()
 
 
-@app.get("/kpi/achat")
+@app.get("/kpi/achat", tags=["KPI"])
 def get_kpi_achat(annee: Optional[int] = None):
     """
     KPI achats : montant brut/net, quantités brutes/nettes, nombre de
@@ -320,7 +334,7 @@ def get_kpi_achat(annee: Optional[int] = None):
         conn.close()
 
 
-@app.get("/kpi/produit")
+@app.get("/kpi/produit", tags=["KPI"])
 def get_kpi_produit(annee: Optional[int] = None):
     """
     KPI produits : quantité achetée, quantité vendue (filtrables par année),
