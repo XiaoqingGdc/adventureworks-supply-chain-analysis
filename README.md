@@ -19,6 +19,7 @@
 - **Le prix d'achat réel érode la marge** : sur les produits achetés puis revendus, la marge passe de 27,7 % (coût standard) à 18,3 % (prix d'achat réel), soit **−9,4 points**. L'écart se creuse : −10,4 pts en 2024, −14,2 pts au 1er semestre 2025.
 - **Les composants cumulent les difficultés** : achetés environ 75 % au-dessus du coût standard, 436 jours de couverture de stock, 4,2 % de marge.
 - **Le délai fournisseur n'est pas le facteur limitant** (9 jours en moyenne) ; le risque porte sur la qualité : les 10 premiers fournisseurs (43 % des achats) appartiennent tous au segment « Gros volumes », qui a le taux de rejet le plus élevé (3,4 %).
+- **Le seuil de réapprovisionnement fixe masque le risque de rupture** : seuls 5 produits achetés sont sous leur seuil, mais l'indicateur de couverture en jours (stock ÷ ventes par jour, comparé au délai fournisseur) en signale **19 sur 76**. Tous viennent de 5 fournisseurs « Peu d'historique » (moins de 30 lignes d'achat), que le clustering ne peut pas évaluer.
 - **Action prioritaire** : renégocier les prix d'achat des composants et des pneus.
 
 ## 🗂️ Structure du projet
@@ -42,7 +43,7 @@ ProjetFinal/
 │   └── export_clean_parquet.py   ← export des tables utiles en Parquet
 ├── ml/
 │   ├── clustering_fournisseur.ipynb   ← segmentation des fournisseurs
-│   ├── stock_risk_prediction.ipynb    ← classification du risque de rupture
+│   ├── risque_rupture_couverture.ipynb ← risque de rupture : couverture de stock en jours
 │   └── outputs/
 ├── parquet_for_powerbi/          ← fichiers Parquet chargés dans Power BI (générés par `export_clean_parquet.py`)
 ├── AdventureWorks.pbix           ← dashboard Power BI
@@ -68,7 +69,8 @@ CSV bruts → Python (pandas) → SQLite → Parquet → Power BI
 7. **`src/nettoyage.py`** : traitement des valeurs manquantes et suppression des colonnes sans valeur analytique.
 8. **`src/export_clean_parquet.py`** : export en Parquet des **13 tables utilisées** par le modèle Power BI (types corrigés : entiers, dates).
 9. **`ml/clustering_fournisseur.ipynb`** : génère `parquet_for_powerbi/vendor_segments.parquet`.
-10. **Power BI** : chargement des fichiers Parquet, modélisation en étoile, mesures DAX, 4 pages de restitution.
+10. **`ml/risque_rupture_couverture.ipynb`** : calcule la couverture de stock en jours (stock ÷ ventes par jour, comparé au délai fournisseur) et génère `parquet_for_powerbi/produits_a_risque.parquet`.
+11. **Power BI** : chargement des fichiers Parquet, modélisation en étoile, mesures DAX, 4 pages de restitution.
 
 ### Schéma de la base
 ![Schéma AdventureWorks](img/adventureworks.png)
@@ -110,7 +112,7 @@ Modèle : 3 tables de faits (achats, ventes, stock), dimensions produit, fournis
 | Modèle | Méthode | Résultat |
 |---|---|---|
 | **Segmentation des fournisseurs** | K-Means (K = 3) sur les 79 fournisseurs ayant au moins 30 lignes d'achat, règles métier pour les 25 autres | 5 segments : Gros volumes (44), Petites séries (22), Sans commande (18), Généralistes (13), Peu d'historique (7) |
-| **Risque de rupture de stock** | Régression logistique vs Random Forest, 151 produits finis | Régression logistique retenue : rappel 0,92, F1 0,56 (filtre d'alerte) |
+| **Risque de rupture de stock** | Seuil de réapprovisionnement fixe : 5 produits sur 83 seulement, trop peu pour une classification. Remplacé par un indicateur de **couverture en jours** (stock ÷ ventes par jour, comparé au délai fournisseur) sur les 76 produits achetés avec ventes | 19 produits à risque sur 76, tous issus de 5 fournisseurs « Peu d'historique » (moins de 30 lignes d'achat), non évalués par le clustering |
 
 ## 🔐 Données et RGPD
 
@@ -130,13 +132,14 @@ python src/nettoyage.py
 python src/export_clean_parquet.py
 ```
 
-Puis exécuter `ml/clustering_fournisseur.ipynb` (génère `vendor_segments.parquet`) et ouvrir `AdventureWorks.pbix` dans Power BI Desktop (Accueil → Actualiser).
+Puis exécuter `ml/clustering_fournisseur.ipynb` (génère `vendor_segments.parquet`) et `ml/risque_rupture_couverture.ipynb` (génère `produits_a_risque.parquet`), puis ouvrir `AdventureWorks.pbix` dans Power BI Desktop (Accueil → Actualiser).
 
 ## ⚠️ Limites
 
 - Coût standard fixe, sans historique des coûts.
 - Stock disponible uniquement à date (pas de stock moyen).
 - Achats en cartons ou bidons, nomenclature en unités : pas de facteur de conversion.
+- Couverture en jours : ventes moyennes sans saisonnalité, commandes en cours non prises en compte ; 72 produits fabriqués n'ont aucun enregistrement de stock et sont hors périmètre.
 - Ventes de mai 2022 à juin 2025, achats jusqu'en septembre 2025.
 
 ## 📚 Dataset
