@@ -50,7 +50,6 @@ ProjetFinal/
 │   ├── risque_rupture_couverture.ipynb ← risque de rupture : couverture de stock en jours
 │   └── outputs/                        ← graphiques (coude, PCA) et vendor_clusters.csv
 ├── parquet_for_powerbi/          ← fichiers Parquet chargés dans Power BI (tables : `export_clean_parquet.py` ; segments et produits à risque : notebooks `ml/`)
-├── AdventureWorks.pbix           ← dashboard Power BI
 ├── AdventureWorks_theme.json     ← thème Power BI
 ├── requirements.txt
 ├── LICENSE
