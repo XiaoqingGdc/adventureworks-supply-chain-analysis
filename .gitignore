@@ -12,4 +12,5 @@ parquet_for_powerbi/*.parquet
 .vscode/
 src/.env
 src/agent.py
-src/chatbot.py*.pbix
+src/chatbot.py
+*.pbix
